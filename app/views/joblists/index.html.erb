@@ -1,0 +1,9 @@
+<h1>メッセージ一覧</h1>
+
+<ul>
+  <% @joblists.each do |joblist| %>
+    <li><%= link_to joblist.id, joblist %> : <%= joblist.content %></li>
+  <% end %>
+</ul>
+
+<%= link_to '新規タスクリストの投稿', new_joblist_path %>

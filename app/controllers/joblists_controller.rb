@@ -13,8 +13,8 @@ class JoblistsController < ApplicationController
 
   def create
      @joblist = Joblist.new(joblist_params)
-
-    if @joblist.save
+     
+     if @joblist.save
       flash[:success] = 'Tasklist が正常に投稿されました'
       redirect_to @joblist
     else
@@ -28,15 +28,16 @@ class JoblistsController < ApplicationController
   end
 
   def update
-     @joblist = Tasklist.find(params[:id])
-
-    if @joblist.update(joblisd_params)
-      flash[:success] = 'Tasklist は正常に更新されました'
+    @joblist = Joblist.find(params[:id])
+    
+    if @joblist.save
+      flash[:success] = 'Tasklist が正常に投稿されました'
       redirect_to @joblist
     else
-      flash.now[:danger] = 'Tasklist は更新されませんでした'
-      render :edit
+      flash.now[:danger] = 'Tasklist が投稿されませんでした'
+      render :new
     end
+  
   end
 
   def destroy
@@ -49,5 +50,5 @@ private
 
   # Strong Parameter
   def joblist_params
-    params.require(:joblist).permit(:content)
+    params.require(:joblist).permit(:content, :status)
   end

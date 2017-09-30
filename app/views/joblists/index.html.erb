@@ -2,7 +2,9 @@
 
 <ul>
   <% @joblists.each do |joblist| %>
-    <li><%= link_to joblist.id, joblist %> : <%= joblist.content %></li>
+    <li><%= link_to joblist.id, joblist %> : 
+    <%= joblist.content %> &gt;
+    <%= joblist.status %></li>
   <% end %>
 </ul>
 

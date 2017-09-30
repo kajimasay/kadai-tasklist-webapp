@@ -1,5 +1,7 @@
 <h1>id = <%= @joblist.id %> のメッセージ詳細ページ</h1>
 
-<p><%= @joblist.content %></p>
+<p>タスクリスト<%= @joblist.content %></p>
+<p>ステータス<%= @joblist.status %></p>
 
 <%= link_to '一覧に戻る', joblists_path %>
+<%= link_to 'このタスクリストを編集する', edit_joblist_path(@joblist) %>

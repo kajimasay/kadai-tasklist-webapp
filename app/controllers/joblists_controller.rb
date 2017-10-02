@@ -1,6 +1,6 @@
 class JoblistsController < ApplicationController
   def index
-     @joblists = Joblist.all
+     @joblists = Joblist.all.page(params[:page]).per(10)
   end
 
   def show

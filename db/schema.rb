@@ -14,10 +14,9 @@ ActiveRecord::Schema.define(version: 20170929222533) do
 
   create_table "joblists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
-    t.string   "status"
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "status"
   end
 
 end

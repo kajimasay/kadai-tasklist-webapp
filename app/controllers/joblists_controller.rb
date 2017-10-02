@@ -30,13 +30,13 @@ class JoblistsController < ApplicationController
   def update
     @joblist = Joblist.find(params[:id])
     
-    if @joblist.save
-      flash[:success] = 'Tasklist が正常に投稿されました'
-      redirect_to @joblist
-    else
-      flash.now[:danger] = 'Tasklist が投稿されませんでした'
-      render :new
-    end
+        if @joblist.update(joblist_params)
+          flash[:success] = 'Tasklist が正常に投稿されました'
+          redirect_to @joblist
+        else
+          flash.now[:danger] = 'Tasklist が投稿されませんでした'
+          render :new
+        end
   
   end
 

@@ -15,10 +15,10 @@ class JoblistsController < ApplicationController
      @joblist = Joblist.new(joblist_params)
      
      if @joblist.save
-      flash[:success] = 'Tasklist が正常に投稿されました'
+      flash[:success] = 'Task が正常に投稿されました'
       redirect_to @joblist
     else
-      flash.now[:danger] = 'Tasklist が投稿されませんでした'
+      flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
     end
   end
@@ -31,16 +31,21 @@ class JoblistsController < ApplicationController
     @joblist = Joblist.find(params[:id])
     
         if @joblist.update(joblist_params)
-          flash[:success] = 'Tasklist が正常に投稿されました'
+          flash[:success] = 'Task が正常に投稿されました'
           redirect_to @joblist
         else
-          flash.now[:danger] = 'Tasklist が投稿されませんでした'
+          flash.now[:danger] = 'Task が投稿されませんでした'
           render :new
         end
   
   end
 
   def destroy
+    @joblist = Joblist.find(params[:id])
+    @joblist.destroy
+    
+    flash[:success] = 'タスクは正常に削除されました'
+    redirect_to joblists_url
   end
   
   

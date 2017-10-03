@@ -5,3 +5,4 @@
 
 <%= link_to '一覧に戻る', joblists_path %>
 <%= link_to 'このタスクリストを編集する', edit_joblist_path(@joblist) %>
+<%= link_to 'このタスクを削除する', @joblist, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>

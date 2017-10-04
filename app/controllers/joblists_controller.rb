@@ -1,10 +1,11 @@
 class JoblistsController < ApplicationController
+  before_action :set_joblist, only: [:show, :edit, :update, :destroy]
+
   def index
      @joblists = Joblist.all.page(params[:page]).per(10)
   end
 
   def show
-    @joblist = Joblist.find(params[:id])
   end
 
   def new
@@ -24,12 +25,9 @@ class JoblistsController < ApplicationController
   end
 
   def edit
-    @joblist = Joblist.find(params[:id])
   end
 
   def update
-    @joblist = Joblist.find(params[:id])
-    
         if @joblist.update(joblist_params)
           flash[:success] = 'Task が正常に投稿されました'
           redirect_to @joblist
@@ -41,7 +39,6 @@ class JoblistsController < ApplicationController
   end
 
   def destroy
-    @joblist = Joblist.find(params[:id])
     @joblist.destroy
     
     flash[:success] = 'タスクは正常に削除されました'
@@ -53,6 +50,10 @@ end
 
 private
 
+  def set_joblist
+    @joblist = Joblist.find(params[:id])
+  end
+  
   # Strong Parameter
   def joblist_params
     params.require(:joblist).permit(:content, :status)

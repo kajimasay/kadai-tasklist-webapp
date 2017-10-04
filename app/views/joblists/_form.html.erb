@@ -1,23 +1,33 @@
-<%= form_for(joblist) do |f| %>
-  <% if joblist.errors.any? %>
-    <div id="error_explanation">
-      
-      <h2><%= joblist.errors.count %>件のエラーがあります。</h2>
-      
-      <ul>
-        <% joblist.errors.full_messages.each do |joblist| %>
-          <li><%= joblist %></li>
+<div class="row">
+  <div class="col-xs-12 col-sm-offset-2 col-sm-6 col-md-offset-2 col-md-6 col-lg-offset-3 col-lg-3">
+    
+      <%= form_for(joblist) do |f| %>
+        <% if joblist.errors.any? %>
+          <div class="alert alert-warning">
+            <div id="error_explanation">
+              
+              <h2><%= joblist.errors.count %>件のエラーがあります。</h2>
+              
+              <ul>
+                <% joblist.errors.full_messages.each do |joblist| %>
+                  <li><%= joblist %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <%= f.label :content, 'タスクリスト' %>
-  <%= f.text_field :content %>
-  
-  <%= f.label :status, 'ステータス' %>
-  <%= f.text_field :status %>
-  
-  <%= f.submit '投稿' %>
-  
-<% end %>
+  <div class="form-group">
+            <%= f.label :content, 'タスクリスト' %>
+            <%= f.text_field :content, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+            <%= f.label :status, 'ステータス' %>
+            <%= f.text_field :content, class: 'form-control' %>
+  </div>
+            <%= f.submit '投稿', class: 'btn btn-primary' %>
+            
+          <% end %>
+</div>
+</div>

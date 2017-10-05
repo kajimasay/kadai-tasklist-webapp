@@ -56,3 +56,6 @@ gem 'kaminari'
 
 gem "pry-byebug", group: :development
 
+group :production do
+  gem 'pg'
+end

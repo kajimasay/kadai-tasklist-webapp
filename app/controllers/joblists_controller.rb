@@ -1,4 +1,6 @@
 class JoblistsController < ApplicationController
+  before_action :require_user_logged_in
+
   before_action :set_joblist, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -19,6 +21,7 @@ class JoblistsController < ApplicationController
       flash[:success] = 'Task が正常に投稿されました'
       redirect_to @joblist
     else
+      @joblists = joblists.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
     end

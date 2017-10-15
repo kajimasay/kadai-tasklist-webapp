@@ -4,7 +4,12 @@ class JoblistsController < ApplicationController
   before_action :set_joblist, only: [:show, :edit, :update, :destroy]
 
   def index
-     @joblists = Joblist.all.page(params[:page]).per(10)
+    if logged_in?
+#     @joblists = Joblist.all.page(params[:page]).per(10) 
+      @user = current_user
+#      @joblist = current_user.joblists.build  # form_for 用
+      @joblists = current_user.joblists.order('created_at DESC').page(params[:page])
+    end
   end
 
   def show
@@ -15,13 +20,13 @@ class JoblistsController < ApplicationController
   end
 
   def create
-     @joblist = Joblist.new(joblist_params)
-     
+    # @joblist = Joblist.new(joblist_params)
+     @joblist = current_user.joblists.build(joblist_params)     
      if @joblist.save
       flash[:success] = 'Task が正常に投稿されました'
       redirect_to @joblist
     else
-      @joblists = joblists.order('created_at DESC').page(params[:page])
+      @joblists = current_user.joblists.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
     end
